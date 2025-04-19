@@ -1,10 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import AuthCheck from "./AuthCheck";
 import { SignInButton, SignOutButton } from "./buttons";
+import { usePathname } from "next/navigation";
 
 export function Navbar() {
+  const pathname = usePathname();
+
   return (
     <header className="relative rounded-xl flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-neutral-400 text-sm py-3 dark:bg-neutral-800">
       <nav className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between">
@@ -14,7 +19,13 @@ export function Navbar() {
             href="/"
             aria-label="Brand"
           >
-            <Image className="rounded-full" src="/linkify.jpg" width={40} height={40} alt="Logo" />
+            <Image
+              className="rounded-full"
+              src="/linkify.jpg"
+              width={40}
+              height={40}
+              alt="Logo"
+            />
             Brand
           </Link>
           <div className="sm:hidden">
@@ -69,20 +80,20 @@ export function Navbar() {
         >
           <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
             <Link
-              className="font-medium text-blue-500 focus:outline-hidden"
+              className={`${pathname === "/" ? "text-blue-500" : "text-gray-600"} font-medium focus:outline-hidden`}
               href="/"
               aria-current="page"
             >
               Home
             </Link>
             <Link
-              className="font-medium text-gray-600 hover:text-gray-400 focus:outline-hidden focus:text-gray-400 dark:text-neutral-400 dark:hover:text-neutral-500 dark:focus:text-neutral-500"
+              className={`${pathname === "/dashboard" ? "text-blue-500" : "text-gray-600"} font-medium focus:outline-hidden`}
               href="/dashboard"
             >
               Dashboard
             </Link>
-            <ThemeSwitcher />
             <section className="flex justify-center items-center gap-x-3">
+              <ThemeSwitcher />
               <SignInButton />
               <AuthCheck>
                 <SignOutButton />

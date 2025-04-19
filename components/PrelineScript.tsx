@@ -20,7 +20,10 @@ export default function PrelineScript() {
 
   useEffect(() => {
     setTimeout(() => {
-      if (window.HSStaticMethods && typeof window.HSStaticMethods.autoInit === "function") {
+      if (
+        window.HSStaticMethods &&
+        typeof window.HSStaticMethods.autoInit === "function"
+      ) {
         window.HSStaticMethods.autoInit();
       }
     }, 100);

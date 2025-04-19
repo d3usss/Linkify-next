@@ -28,7 +28,9 @@ export default function RootLayout({
   return (
     <AuthProvider>
       <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
           <section className="container mx-auto px-4 bg-white dark:bg-neutral-600 text-black dark:text-white py-2">
             <Navbar />
             <main>{children}</main>
