@@ -8,6 +8,13 @@
       "when": 1744199320864,
       "tag": "0000_stale_masque",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1745059668743,
+      "tag": "0001_tranquil_metal_master",
+      "breakpoints": true
     }
   ]
 }

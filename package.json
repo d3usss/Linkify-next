@@ -14,13 +14,16 @@
     "db:push": "drizzle-kit push"
   },
   "dependencies": {
+    "@auth/drizzle-adapter": "^1.8.0",
     "@libsql/client": "^0.15.2",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.41.0",
     "linkify-next": "link:",
     "next": "15.2.5",
+    "next-auth": "^4.24.11",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
