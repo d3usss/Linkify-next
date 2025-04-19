@@ -1,8 +1,8 @@
 export default function Home() {
   return (
-    <div>
-      <h1>Linkify app</h1>
-      <h2>Make your url shoter and tack visits.</h2>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h1 className="text-3xl font-bold">Linkify app</h1>
+      <p className="mt-4">Make your url shoter and tack visits.</p>
     </div>
   );
 }
