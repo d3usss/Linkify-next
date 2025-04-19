@@ -6,24 +6,17 @@ import { SignInButton, SignOutButton } from "./buttons";
 
 export function Navbar() {
   return (
-    <header className="container mx-auto flex flex-wrap sm:justify-start items-center sm:flex-nowrap w-full bg-neutral-200 text-sm dark:bg-neutral-800 py-2 rounded-xl">
+    <header className="relative rounded-xl flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-neutral-400 text-sm py-3 dark:bg-neutral-800">
       <nav className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between">
         <div className="flex items-center justify-between">
           <Link
-            className="font-semibold focus:outline-hidden hover:opacity-80 inline-flex items-center gap-x-2 text-xl text-white"
+            className="flex items-center gap-x-2 text-xl font-semibold dark:text-white focus:outline-hidden focus:opacity-80"
             href="/"
             aria-label="Brand"
           >
-            <Image
-              src="/linkify.jpg"
-              alt="Linkify"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-            Linkify
+            <Image className="rounded-full" src="/linkify.jpg" width={40} height={40} alt="Logo" />
+            Brand
           </Link>
-
           <div className="sm:hidden">
             <button
               type="button"
@@ -89,10 +82,12 @@ export function Navbar() {
               Dashboard
             </Link>
             <ThemeSwitcher />
-            <AuthCheck>
-              <SignOutButton />
-            </AuthCheck>
-            <SignInButton />
+            <section className="flex justify-center items-center gap-x-3">
+              <SignInButton />
+              <AuthCheck>
+                <SignOutButton />
+              </AuthCheck>
+            </section>
           </div>
         </div>
       </nav>

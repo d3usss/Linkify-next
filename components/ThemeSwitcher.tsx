@@ -1,3 +1,5 @@
+"use client";
+
 export function ThemeSwitcher() {
   return (
     <>
@@ -20,7 +22,6 @@ export function ThemeSwitcher() {
         >
           <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
         </svg>
-        Dark
       </button>
       <button
         type="button"
@@ -49,7 +50,6 @@ export function ThemeSwitcher() {
           <path d="m6.34 17.66-1.41 1.41"></path>
           <path d="m19.07 4.93-1.41 1.41"></path>
         </svg>
-        Light
       </button>
     </>
   );
