@@ -31,9 +31,9 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <section className="container mx-auto px-4 bg-white dark:bg-neutral-600 text-black dark:text-white py-2">
+          <section className="container mx-auto px-4 bg-white dark:bg-neutral-600 text-black dark:text-white py-4">
             <Navbar />
-            <main>{children}</main>
+            <main className="py-4">{children}</main>
           </section>
         </body>
         <PrelineScriptWrapper />

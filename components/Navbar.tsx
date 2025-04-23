@@ -12,7 +12,7 @@ export function Navbar() {
 
   return (
     <header className="relative rounded-xl flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-neutral-400 text-sm py-3 dark:bg-neutral-800">
-      <nav className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between">
+      <nav className="max-w-full w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between">
         <div className="flex items-center justify-between">
           <Link
             className="flex items-center gap-x-2 text-xl font-semibold dark:text-white focus:outline-hidden focus:opacity-80"
@@ -26,7 +26,7 @@ export function Navbar() {
               height={40}
               alt="Logo"
             />
-            Brand
+            Linkify
           </Link>
           <div className="sm:hidden">
             <button

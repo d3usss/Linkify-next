@@ -1,5 +1,10 @@
 import { sql } from "drizzle-orm";
-import { integer, primaryKey, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import {
+  integer,
+  primaryKey,
+  sqliteTable,
+  text,
+} from "drizzle-orm/sqlite-core";
 import type { AdapterAccount } from "next-auth/adapters";
 
 export const users = sqliteTable("user", {
@@ -59,7 +64,12 @@ export const verificationTokens = sqliteTable(
 );
 
 export const urlsTable = sqliteTable("urls", {
-  id: integer("id").primaryKey(),
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  userId: text("user_id")
+    .notNull()
+    .references(() => users.id),
   orginalUrl: text("url").notNull(),
   shortUrl: text("short_url").notNull(),
   createdAt: integer("created_at")

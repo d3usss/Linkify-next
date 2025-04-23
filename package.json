@@ -16,6 +16,7 @@
   "dependencies": {
     "@auth/drizzle-adapter": "^1.8.0",
     "@libsql/client": "^0.15.2",
+    "@preline/accordion": "^3.0.0",
     "@preline/theme-switch": "^3.0.0",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.41.0",
