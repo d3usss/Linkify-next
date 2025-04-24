@@ -33,7 +33,7 @@ export default function RootLayout({
         >
           <section className="container mx-auto px-4 bg-white dark:bg-neutral-600 text-black dark:text-white py-4">
             <Navbar />
-            <main className="py-4">{children}</main>
+            <main className="p-4">{children}</main>
           </section>
         </body>
         <PrelineScriptWrapper />
