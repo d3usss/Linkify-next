@@ -1,14 +1,16 @@
 "use client";
+
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { RedirectLink } from "./RedirectLink";
 
 interface URL {
   id: number;
-  originalUrl: string;
+  orginalUrl: string;
   shortUrl: string;
   createdAt: Date;
 }
@@ -19,26 +21,31 @@ interface GridProps {
 
 const columnHelper = createColumnHelper<URL>();
 
-const columns = [
-  columnHelper.accessor("id", {
-    header: () => "Id",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("originalUrl", {
-    header: () => "Orginal URL",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("shortUrl", {
-    header: () => "Short URL",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("createdAt", {
-    header: () => "Created at",
-    cell: (info) => info.getValue(),
-  }),
-];
-
 export default function Grid({ data }: GridProps) {
+  const columns = [
+    columnHelper.accessor("id", {
+      header: () => "Id",
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("orginalUrl", {
+      header: () => "Orginal URL",
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("shortUrl", {
+      header: () => "Short URL",
+      cell: ({ row }) => (
+        <RedirectLink
+          orginalUrl={row.original.orginalUrl}
+          shortUrl={row.original.shortUrl}
+        />
+      ),
+    }),
+    columnHelper.accessor("createdAt", {
+      header: () => "Created at",
+      cell: (info) => info.getValue(),
+    }),
+  ];
+
   const table = useReactTable({
     data,
     columns,

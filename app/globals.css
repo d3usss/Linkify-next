@@ -4,3 +4,7 @@
 @source "../node_modules/preline/dist/*.js";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+a {
+  @apply text-blue-400;
+}

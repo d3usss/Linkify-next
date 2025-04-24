@@ -11,7 +11,7 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="relative rounded-xl flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-neutral-400 text-sm py-3 dark:bg-neutral-800">
+    <header className="relative rounded-xl flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-neutral-300 text-sm py-3 dark:bg-neutral-800">
       <nav className="max-w-full w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between">
         <div className="flex items-center justify-between">
           <Link
@@ -80,14 +80,14 @@ export function Navbar() {
         >
           <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
             <Link
-              className={`${pathname === "/" ? "text-blue-500" : "text-gray-600"} font-medium focus:outline-hidden`}
+              className={`${pathname === "/" ? "underline" : "text-gray-600"} font-medium focus:outline-hidden`}
               href="/"
               aria-current="page"
             >
               Home
             </Link>
             <Link
-              className={`${pathname === "/dashboard" ? "text-blue-500" : "text-gray-600"} font-medium focus:outline-hidden`}
+              className={`${pathname === "/dashboard" ? "underline" : "text-gray-600"} font-medium focus:outline-hidden`}
               href="/dashboard"
             >
               Dashboard

@@ -5,6 +5,7 @@ import { sql } from "drizzle-orm";
 import { getAuthSession } from "@/utils/getAuthSession";
 import { returnServerError } from "@/utils/returnServerError";
 import { SuccessStatuses, ErrorStatuses } from "@/utils/statuses";
+import { baseUrl } from "@/utils/getBaseUrl";
 
 export async function GET() {
   try {
@@ -32,8 +33,8 @@ export async function GET() {
 
     const data = urls.map((url, index) => ({
       id: index + 1,
-      originalUrl: url.orginalUrl,
-      shortUrl: url.shortUrl,
+      orginalUrl: url.orginalUrl,
+      shortUrl: `${baseUrl}/url/${url.shortUrl}`,
       createdAt: url.createdAt.toLocaleString(),
     }));
 
