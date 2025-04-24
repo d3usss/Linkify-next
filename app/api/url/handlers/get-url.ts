@@ -4,13 +4,14 @@ import { urlsTable, users } from "@/db/schema";
 import { sql } from "drizzle-orm";
 import { getAuthSession } from "@/utils/getAuthSession";
 import { returnServerError } from "@/utils/returnServerError";
+import { SuccessStatuses, ErrorStatuses } from "@/utils/statuses";
 
 export async function GET() {
   try {
     const session = await getAuthSession();
 
     if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json(ErrorStatuses.UNAUTHORIZED);
     }
 
     const user = await db
@@ -20,10 +21,7 @@ export async function GET() {
       .get();
 
     if (!user) {
-      return NextResponse.json(
-        { status: 404 },
-        { statusText: "Not Found user" }
-      );
+      return NextResponse.json(ErrorStatuses.USER_NOT_FOUND);
     }
 
     const urls = await db
@@ -40,13 +38,10 @@ export async function GET() {
     }));
 
     if (!data) {
-      return NextResponse.json(
-        { status: 404 },
-        { statusText: `No URLs found ${user.name}` }
-      );
+      return NextResponse.json(ErrorStatuses.URL_NOT_FOUND);
     }
 
-    return NextResponse.json(data, { status: 200 });
+    return NextResponse.json(data, SuccessStatuses.SUCCESS);
   } catch (error: unknown) {
     returnServerError(error);
   }

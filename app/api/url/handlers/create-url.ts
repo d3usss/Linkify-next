@@ -6,6 +6,7 @@ import { z } from "zod";
 import { NextResponse } from "next/server";
 import { returnServerError } from "@/utils/returnServerError";
 import { getAuthSession } from "@/utils/getAuthSession";
+import { ErrorStatuses, SuccessStatuses } from "@/utils/statuses";
 
 const urlValidationSchema = z.object({
   orginalUrl: z
@@ -24,14 +25,14 @@ export async function POST(request: Request) {
     const session = await getAuthSession();
 
     if (!session) {
-      return NextResponse.json({ status: 401 }, { statusText: "Unauthorized" });
+      return NextResponse.json(ErrorStatuses.UNAUTHORIZED);
     }
 
     const { orginalUrl } = await request.json();
     const parsed = urlValidationSchema.safeParse({ orginalUrl });
 
     if (!parsed.success) {
-      return NextResponse.json({ status: 400 }, { statusText: "Invalid URL" });
+      return NextResponse.json(ErrorStatuses.INVALID_URL);
     }
 
     const isUrlExists = await db
@@ -41,10 +42,7 @@ export async function POST(request: Request) {
       .get();
 
     if (isUrlExists) {
-      return NextResponse.json(
-        { status: 409 },
-        { statusText: "URL already exists" }
-      );
+      return NextResponse.json(ErrorStatuses.URL_ALREADY_EXISTS);
     }
 
     const user = await db
@@ -54,10 +52,7 @@ export async function POST(request: Request) {
       .get();
 
     if (!user) {
-      return NextResponse.json(
-        { status: 404 },
-        { statusText: "Not Found user" }
-      );
+      return NextResponse.json(ErrorStatuses.USER_NOT_FOUND);
     }
 
     const addedUrl = await db.insert(urlsTable).values({
@@ -67,16 +62,10 @@ export async function POST(request: Request) {
     });
 
     if (!addedUrl) {
-      return NextResponse.json(
-        { status: 500 },
-        { statusText: "Internal Server Error" }
-      );
+      return NextResponse.json(ErrorStatuses.URL_CREATION_FAILED);
     }
 
-    return NextResponse.json(
-      { status: 200 },
-      { statusText: "URL added successfully" }
-    );
+    return NextResponse.json(SuccessStatuses.SUCCESS);
   } catch (error: unknown) {
     returnServerError(error);
   }
