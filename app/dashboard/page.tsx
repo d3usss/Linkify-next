@@ -6,7 +6,7 @@ import { headers } from "next/headers";
 
 export default async function Dashboard() {
   const session = await getServerSession();
-  const data = await fetch("http://127.0.0.1:3000/api/get-urls", {
+  const data = await fetch("http://127.0.0.1:3000/api/url", {
     method: "GET",
     headers: Object.fromEntries((await headers()).entries()),
   }).then((res) => res.json());

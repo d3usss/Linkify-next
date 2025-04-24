@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AddUrlForm() {
   const [toastMsg, setToastMsg] = useState("");
   const [urlValue, setUrlValue] = useState("");
+  const router = useRouter();
 
   const addUrl = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -13,7 +15,7 @@ export default function AddUrlForm() {
     const formData = new FormData(e.currentTarget);
     const url = formData.get("orginalUrl");
 
-    const res = await fetch("/api/add-url", {
+    const res = await fetch("/api/url", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,6 +29,8 @@ export default function AddUrlForm() {
       setToastMsg(res.statusText);
       setUrlValue("");
     }
+
+    router.refresh();
   };
 
   const closeToast = () => {
