@@ -3,10 +3,11 @@ import Grid from "@/components/Grid";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
+import { baseUrl } from "@/utils/getBaseUrl";
 
 export default async function Dashboard() {
   const session = await getServerSession();
-  const data = await fetch("http://127.0.0.1:3000/api/url", {
+  const data = await fetch(`${baseUrl}/api/url`, {
     method: "GET",
     headers: Object.fromEntries((await headers()).entries()),
   }).then((res) => res.json());
