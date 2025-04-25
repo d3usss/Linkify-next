@@ -57,7 +57,7 @@ export async function POST(request: Request) {
 
     const addedUrl = await db.insert(urlsTable).values({
       orginalUrl,
-      shortUrl: generateRandomString(),
+      code: generateRandomString(),
       userId: user.id,
     });
 

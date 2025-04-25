@@ -11,7 +11,7 @@ import { RedirectLink } from "./RedirectLink";
 interface URL {
   id: number;
   orginalUrl: string;
-  shortUrl: string;
+  code: string;
   createdAt: Date;
 }
 
@@ -31,14 +31,9 @@ export default function Grid({ data }: GridProps) {
       header: () => "Orginal URL",
       cell: (info) => info.getValue(),
     }),
-    columnHelper.accessor("shortUrl", {
+    columnHelper.accessor("code", {
       header: () => "Short URL",
-      cell: ({ row }) => (
-        <RedirectLink
-          orginalUrl={row.original.orginalUrl}
-          shortUrl={row.original.shortUrl}
-        />
-      ),
+      cell: ({ row }) => <RedirectLink code={row.original.code} />,
     }),
     columnHelper.accessor("createdAt", {
       header: () => "Created at",
@@ -52,8 +47,24 @@ export default function Grid({ data }: GridProps) {
     getCoreRowModel: getCoreRowModel(),
   });
 
+  if (!data.length) {
+    return (
+      <div className="text-center py-10 px-4 sm:px-6 lg:px-8 border border-neutral-200 mt-4 rounded-lg">
+        <h2 className="block font-bold text-gray-800 text-2xl mb-4">
+          Ready to make your link work smarter?
+        </h2>
+        <p className="mt-3 text-sm text-gray-800">
+          {`Paste or type your URL (like https://example.com) into the form
+          above and let Linkify do the rest. You'll get a short link you can
+          share anywhere – and track every click along the way!`}
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col my-4">
+      <h2 className="text-2xl font-bold py-6">{`URL's table:`}</h2>
       <div className="-m-1.5 overflow-x-auto">
         <div className="p-1.5 min-w-full inline-block align-middle">
           <div className="overflow-hidden">

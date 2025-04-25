@@ -20,6 +20,7 @@ export default async function Dashboard() {
     <>
       <h1 className="text-3xl font-bold">Dashboard</h1>
       <p className="my-4">Welcome to your dashboard {session.user?.name}!</p>
+
       <AddUrlForm />
       <Grid data={data} />
     </>

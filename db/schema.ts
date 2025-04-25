@@ -71,7 +71,7 @@ export const urlsTable = sqliteTable("urls", {
     .notNull()
     .references(() => users.id),
   orginalUrl: text("url").notNull(),
-  shortUrl: text("short_url").notNull(),
+  code: text("code").notNull(),
   createdAt: integer("created_at")
     .notNull()
     .default(sql`(CURRENT_TIMESTAMP)`),

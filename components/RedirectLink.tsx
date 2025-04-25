@@ -1,14 +1,14 @@
+import { baseUrl } from "@/utils/getBaseUrl";
 import Link from "next/link";
 
 interface RedirectLinkProps {
-  orginalUrl: string;
-  shortUrl: string;
+  code: string;
 }
 
-export function RedirectLink({ orginalUrl, shortUrl }: RedirectLinkProps) {
+export function RedirectLink({ code }: RedirectLinkProps) {
   return (
-    <Link href={orginalUrl} target="_blank" rel="noopener noreferrer">
-      {shortUrl}
+    <Link href={`/url/${code}`} target="_blank" rel="noopener noreferrer">
+      {`${baseUrl}/url/${code}`}
     </Link>
   );
 }
