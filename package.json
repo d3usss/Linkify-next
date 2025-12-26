@@ -24,7 +24,7 @@
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.41.0",
     "linkify-next": "link:",
-    "next": "15.2.5",
+    "next": "15.2.8",
     "next-auth": "^4.24.11",
     "preline": "^3.0.1",
     "react": "^19.0.0",
